@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User Details</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+	<div class="container">
+		<table>
+		  <tr>
+		    <td class="register">
+				<h1>Register</h1>
+				<p>Please fill in this form to create an account.</p>
+				<hr>
+				<br>
+				<div class="form">
+					<div class="registration_form">
+						<label for="email">Email Address</label><br>
+						<input type="email" name="email" placeholder="Enter Email" id="email" required/><br>
+						<label for="username">Username</label><br>
+						<input type="text" name="username" id="username" placeholder="Enter Username" required/><br>
+						<label for="password">Password</label><br>
+						<input type="password" name="password" id="password" placeholder="Enter Password" required/><br>
+						<label for="firstName">First Name</label><br>
+						<input type="text" name="firstName" id="firstName" placeholder="Enetr First Name" required/><br>
+						<label for="lastName">Last Name</label><br>
+						<input type="text" name="lastName" id="lastName" placeholder="Enter Last Name" required/><br>
+						<input type="radio" id="male" name="gender" value="male" required>
+					    <label for="male">Male</label><br>
+					    <input type="radio" id="female" name="gender" value="female" required>
+					    <label for="female">Female</label><br>
+					    <input type="radio" id="other" name="gender" value="other" required>
+					    <label for="other">Other</label><br>
+						<label for="role">Role</label>
+						<select id="role" name="role" required>
+						  <option value="admin">admin</option>
+						  <option value="operations">operations</option>
+						  <option value="sales">sales</option>
+						</select>
+						<br>
+						<button type="submit" class="registerbtn" onclick="return register()">Register</button>
+					</div>
+				</div>
+				<br>
+		    </td>
+		    <td class="login">
+		    	<h1>Login</h1>
+		    	<p>Login here to see all users data on the right side</p>
+				<hr>
+				<br>
+				<div class="form">
+					<div class="login_form">
+						<label for="login_email">Email Address</label><br>
+						<input type="email" name="login_email" placeholder="Enter Email" id="login_email" required/><br>
+						<label for="login_password">Password</label><br>
+						<input type="password" name="login_password" id="login_password" placeholder="Enter Password" required/><br>
+						<br>
+						<button type="submit" class="loginbtn" onclick="login();">Login</button>
+					</div>
+				</div>
+				<br>
+			</td>
+		    <td class="users">
+		    	<h1>All Users Data</h1>
+		    	<p>Once you login all users data will be displayed here automatically</p>
+				<hr>
+				<div id="dashBody">
+					<p>For admins all information about all users will be diplayed here, however for other users only full name and department of all users will be displayed</p>
+				</div>
+				<br>
+				<br>
+		    </td>
+		  </tr>
+		</table>
+	</div>
+</body>
+</html>
