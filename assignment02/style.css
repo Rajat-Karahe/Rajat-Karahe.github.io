@@ -42,7 +42,9 @@ td, tr {
   	border-radius: 10px;
   	vertical-align: baseline;
   	overflow: auto;
-	width: 44%;
+	width: 34%;
+	position: absolute;
+	height: 83%;
 }
 
 .form {
