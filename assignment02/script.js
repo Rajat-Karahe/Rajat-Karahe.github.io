@@ -81,6 +81,14 @@ function viewUsers(){
 			parentEle.innerHTML += '<li><p>Full Name: ' + sessionData[i].firstName + ' ' + sessionData[i].lastName + '</p><p>Role: ' + sessionData[i].role + '</p></li><hr>';
 		}
 	}
+	var button = document.createElement("button");
+	var textNode = document.createTextNode("Logout");
+	button.appendChild(textNode);
+	button.className = "logout";
+	button.onclick = function() {
+		location.reload();
+	}
+	prevBody.appendChild(button);
 }
 
 function warning_fun(inputValue, child_name, parent_name) {
