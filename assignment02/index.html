@@ -3,6 +3,7 @@
 <head>
 	<title>User Details</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="es-es">
 	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
@@ -15,7 +16,7 @@
 				<hr>
 				<br>
 				<div class="form">
-					<div class="registration_form">
+					<form class="registration_form" onsubmit="return register()">
 						<label for="email">Email Address</label><br>
 						<input type="email" name="email" placeholder="Enter Email" id="email" required/><br>
 						<label for="username">Username</label><br>
@@ -39,8 +40,8 @@
 						  <option value="sales">sales</option>
 						</select>
 						<br>
-						<button type="submit" class="registerbtn" onclick="return register()">Register</button>
-					</div>
+						<button type="submit" class="registerbtn">Register</button>
+					</form>
 				</div>
 				<br>
 		    </td>
