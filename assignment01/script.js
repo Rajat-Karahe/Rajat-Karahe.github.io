@@ -1,20 +1,24 @@
-function addItem() {
-  var newItem = document.createElement("li");
-  var inputValue = document.getElementById("newTodoInput").value;
-  var textNode = document.createTextNode(inputValue);
-  newItem.appendChild(textNode);
-  document.getElementById("newTodoInput").value = "";
-  if (inputValue == '') {
-    warning_fun("Cannot add an empty task");
-    return false;
+function addItem(textNode=null) {
+  let newItem = document.createElement("li");
+  var inputValue;
+  if(textNode===null){
+  	inputValue = document.getElementById("newTodoInput").value;
+  	textNode = document.createTextNode(inputValue);
+  	document.getElementById("newTodoInput").value = "";
+	if (inputValue == '') {
+	  warning_fun("Cannot add an empty task");
+	  return false;
+	}
+	if(inputValue.length > 25){
+	  warning_fun("Title cannot be larger than 25 characters");
+	  return false;
+	} 
   }
-  if(inputValue.length > 25){
-    warning_fun("Title cannot be larger than 25 characters");
-    return false;
-  } 
-  document.getElementById("todoList").appendChild(newItem);
+  newItem.appendChild(textNode);
+  
+  document.getElementById("open").appendChild(newItem);
   var span = document.createElement("SPAN");
-  var txt = document.createTextNode("✘");
+  var txt = document.createTextNode("🗑");
   var spanCorrect = document.createElement("SPAN");
   var txtCorrect = document.createTextNode("✔");
   span.className = "remove";
@@ -28,11 +32,37 @@ function addItem() {
     list.remove();
   };
   spanCorrect.onclick = function() {
-  	newItem.style.textDecoration = "line-through";
-  	this.remove();
+  	newItem.remove();
+  	addToCompleted(textNode);
   };
   newItem.appendChild(span);
   newItem.appendChild(spanCorrect);
+}
+
+function addToCompleted(textNode) {
+  let newItem = document.createElement("li");
+  newItem.appendChild(textNode);
+  document.getElementById("completed").appendChild(newItem);
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("🗑");
+  var spanRemove = document.createElement("SPAN");
+  var textRemove = document.createTextNode("✘");
+  span.className = "remove";
+  spanRemove.className = "check";
+  span.style.position = "absolute";
+  spanRemove.style.position = "absolute";
+  span.appendChild(txt);
+  spanRemove.appendChild(textRemove);
+  span.onclick = function() {
+    var list = this.parentElement;
+    list.remove();
+  };
+  spanRemove.onclick = function() {
+  	newItem.remove();
+  	addItem(textNode);
+  };
+  newItem.appendChild(span);
+  newItem.appendChild(spanRemove);
 }
 
 function setFunction() {
@@ -62,3 +92,6 @@ function warning_fun(inputValue) {
   var child = document.getElementById("addBtn");
   parent.insertBefore(divEle, child);
 }
+
+
+// ✘ 🗑 ✔
