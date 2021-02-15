@@ -97,3 +97,24 @@ h1, p, h2 {
 	text-align: center;
 	font-weight: bold;
 }
+
+.warning {
+  padding: 6px;
+  background-color: #ec9b8e;
+  color: black;
+  position: relative;
+  width: 90%;
+}
+
+.remove_warning{
+  right: 0;
+  top: 0;
+  position: absolute;
+  color: black;
+  padding: 5px 10px 5px 10px;
+}
+
+.remove_warning:hover {
+  background-color: #f44336;
+  color: white;
+}
