@@ -76,7 +76,7 @@ input[type="text"] {
   border-color: black;
 }
 
-.addBtn {
+#addBtn {
   background-color: #4CAF50;
   color: white;
   padding: 10px 5px;
@@ -88,4 +88,24 @@ input[type="text"] {
 
 h2{
 	text-align: center;
+}
+
+.warning {
+  padding: 6px;
+  background-color: #ec9b8e;
+  color: black;
+  position: relative;
+}
+
+.remove_warning{
+  right: 0;
+  top: 0;
+  position: absolute;
+  color: black;
+  padding: 5px 10px 5px 10px;
+}
+
+.remove_warning:hover {
+  background-color: #f44336;
+  color: white;
 }
