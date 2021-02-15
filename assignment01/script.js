@@ -5,22 +5,22 @@ function addItem(textNode=null) {
   	inputValue = document.getElementById("newTodoInput").value;
   	textNode = document.createTextNode(inputValue);
   	document.getElementById("newTodoInput").value = "";
-  }
-	if (inputValue == '') {
-	  warning_fun("Cannot add an empty task");
-	  return false;
-	}
-	if(inputValue.length > 25){
-	  warning_fun("Title cannot be larger than 25 characters");
-	  return false;
-	}
-  var presentTasks = document.getElementsByTagName("li");
-  for(let i=0; i< presentTasks.length; i++){
-    if(inputValue.replace(/ /g,'').toUpperCase() == presentTasks[i].innerText.slice(0, -5).replace(/ /g,'').toUpperCase()){
-      warning_fun("Task already exists");
+    if (inputValue == '') {
+      warning_fun("Cannot add an empty task");
       return false;
     }
-  } 
+    if(inputValue.length > 25){
+      warning_fun("Title cannot be larger than 25 characters");
+      return false;
+    }
+    var presentTasks = document.getElementsByTagName("li");
+    for(let i=0; i< presentTasks.length; i++){
+      if(inputValue.replace(/ /g,'').toUpperCase() == presentTasks[i].innerText.slice(0, -5).replace(/ /g,'').toUpperCase()){
+        warning_fun("Task already exists");
+        return false;
+      }
+    } 
+  }
   newItem.appendChild(textNode);
   
   document.getElementById("open").appendChild(newItem);
