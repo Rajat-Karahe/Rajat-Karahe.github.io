@@ -12,30 +12,40 @@ function register(){
 		warning_fun("Enter password of minimum 8 chars", "password", "registration_form");
 		return false;
 	}
-	else{
-		var gender_selected;
-		gender_selected = male ?? female ?? other;
-
-		var newPerson = new Object();
-		newPerson.email = email.value;
-		newPerson.username = username.value;
-		newPerson.firstName = firstName.value;
-		newPerson.lastName = lastName.value;
-		newPerson.password = password.value;
-		newPerson.gender = gender_selected.value;
-		newPerson.role = role.value;
-
-		console.log(newPerson);
-
-		var sessionData = [];
-		sessionData.push(newPerson);
-		sessionData = sessionData.concat(JSON.parse(localStorage.getItem('sessionData')||'[]'));
-		console.log(sessionData);
-		localStorage.setItem('sessionData', JSON.stringify(sessionData));
-		sessionStorage.setItem('currentUser', newPerson.role);
-		alert('You have successfully registered');
-		return true;
+	var sessionData = JSON.parse(localStorage.getItem('sessionData')||'[]');
+	for(let i=0; i<sessionData.length; i++){
+		let user = sessionData[i];
+		if(user.email==email.value){
+			warning_fun("This email is already registered", "email", "registration_form");
+			return false;
+		}
+		if(user.username==username.value){
+			warning_fun("This username is already taken", "username", "registration_form");
+			return false;
+		}
 	}
+	var gender_selected;
+	gender_selected = male ?? female ?? other;
+
+	var newPerson = new Object();
+	newPerson.email = email.value;
+	newPerson.username = username.value;
+	newPerson.firstName = firstName.value;
+	newPerson.lastName = lastName.value;
+	newPerson.password = password.value;
+	newPerson.gender = gender_selected.value;
+	newPerson.role = role.value;
+
+	console.log(newPerson);
+
+	var sessionData = [];
+	sessionData.push(newPerson);
+	sessionData = sessionData.concat(JSON.parse(localStorage.getItem('sessionData')||'[]'));
+	console.log(sessionData);
+	localStorage.setItem('sessionData', JSON.stringify(sessionData));
+	sessionStorage.setItem('currentUser', newPerson.role);
+	alert('You have successfully registered');
+	return true;
 }
 
 function login(){
