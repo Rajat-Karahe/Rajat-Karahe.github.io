@@ -8,13 +8,8 @@ function register(){
     female = document.getElementById("female");
 	other = document.getElementById("other");
 	var role = document.getElementById("role");
-
-	if (username.value=="" || firstName.value=="" || lastName.value=="") {
-		alert("username, first name or last name can't be empty");
-		return false;
-	}
-	else if(password.value=="" || password.value.length<8){
-		alert("Invalid password, enter password of minimum 8 chars");
+	if(password.value.length<8){
+		warning_fun("Enter password of minimum 8 chars", "password", "registration_form");
 		return false;
 	}
 	else{
@@ -39,7 +34,6 @@ function register(){
 		localStorage.setItem('sessionData', JSON.stringify(sessionData));
 		sessionStorage.setItem('currentUser', newPerson.role);
 		alert('You have successfully registered');
-		location.reload();
 		return true;
 	}
 }
@@ -56,7 +50,7 @@ function login(){
 			return true;
 		}
 	}
-	alert("Invalid username or password");
+	warning_fun_login("Invalid username or password", "login_form");
 	return false;
 }
 
@@ -77,4 +71,41 @@ function viewUsers(){
 			parentEle.innerHTML += '<li><p>Full Name: ' + sessionData[i].firstName + ' ' + sessionData[i].lastName + '</p><p>Role: ' + sessionData[i].role + '</p></li><hr>';
 		}
 	}
+}
+
+function warning_fun(inputValue, child_name, parent_name) {
+  var divEle = document.createElement("div");
+  var span = document.createElement("span");
+  var textNode = document.createTextNode(inputValue);
+  var deleteNode = document.createTextNode("✘");
+  span.className = "remove_warning";
+  span.appendChild(deleteNode);
+  divEle.appendChild(textNode);
+  span.onclick = function() {
+    var par = this.parentElement;
+    par.remove();
+  };
+  divEle.appendChild(span);
+  divEle.className = "warning";
+  var parent = document.getElementsByClassName(parent_name);
+  var child = document.getElementById(child_name);
+  parent[0].insertBefore(divEle, child);
+}
+
+function warning_fun_login(inputValue, parent_name) {
+  var divEle = document.createElement("div");
+  var span = document.createElement("span");
+  var textNode = document.createTextNode(inputValue);
+  var deleteNode = document.createTextNode("✘");
+  span.className = "remove_warning";
+  span.appendChild(deleteNode);
+  divEle.appendChild(textNode);
+  span.onclick = function() {
+    var par = this.parentElement;
+    par.remove();
+  };
+  divEle.appendChild(span);
+  divEle.className = "warning";
+  var parent = document.getElementsByClassName(parent_name);
+  parent[0].appendChild(divEle);
 }
