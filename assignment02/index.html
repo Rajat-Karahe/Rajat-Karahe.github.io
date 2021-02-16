@@ -6,7 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="es-es">
 	<script type="text/javascript" src="script.js"></script>
 </head>
-<body>
+<body onload="callOnload();">
 	<div class="container">
 		<table>
 		  <tr>
@@ -16,7 +16,7 @@
 				<hr>
 				<br>
 				<div class="form">
-					<form class="registration_form" action="https://rajat-karahe.github.io/assignment02/index.html" method="GET" onsubmit="return register()">
+					<form class="registration_form" onsubmit="return register()" method="post" action="">
 						<label for="email">Email Address</label><br>
 						<input type="email" name="email" placeholder="Enter Email" id="email" required/><br>
 						<label for="username">Username</label><br>
@@ -44,6 +44,10 @@
 					</form>
 				</div>
 				<br>
+				<div class="instead">
+					<button onclick="loginInstead();">Login Instead</button>
+				</div>
+				<br>
 		    </td>
 		    <td class="login">
 		    	<h1>Login</h1>
@@ -61,13 +65,14 @@
 					</div>
 				</div>
 				<br>
+				<div class="instead">
+					<button onclick="registerInstead();">Register Instead</button>
+				</div>
+				<br>
 			</td>
 		    <td class="users">
-		    	<h1>All Users Data</h1>
-		    	<p>Once you login all users data will be displayed here automatically</p>
-				<hr>
 				<div id="dashBody">
-					<p>For admins all information about all users will be diplayed here, however for other users only full name and department of all users will be displayed</p>
+					
 				</div>
 				<br>
 				<br>
