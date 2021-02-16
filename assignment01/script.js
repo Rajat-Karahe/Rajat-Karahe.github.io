@@ -21,7 +21,10 @@ function addItem(textNode=null) {
       }
     } 
   }
-  newItem.appendChild(textNode);
+  var textSpan = document.createElement("SPAN");
+  textSpan.appendChild(textNode);
+  textSpan.setAttribute("contenteditable", true);
+  newItem.appendChild(textSpan);
   
   document.getElementById("open").appendChild(newItem);
   var span = document.createElement("SPAN");
@@ -51,7 +54,10 @@ function addItem(textNode=null) {
 
 function addToCompleted(textNode) {
   let newItem = document.createElement("li");
-  newItem.appendChild(textNode);
+  var textSpan = document.createElement("SPAN");
+  textSpan.appendChild(textNode);
+  textSpan.setAttribute("contenteditable", true);
+  newItem.appendChild(textSpan);
   document.getElementById("completed").appendChild(newItem);
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("🗑");
