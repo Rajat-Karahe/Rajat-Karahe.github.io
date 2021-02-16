@@ -12,7 +12,9 @@ table {
 
 .container {
 	height: 100%;
-	width: 100%;
+	width: 40%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 td, tr {
@@ -32,6 +34,10 @@ td, tr {
 	width: 30%;
 }
 
+.login {
+  display: none;
+}
+
 .users {
 	border: 1px solid black;
 	padding: 15px;
@@ -45,6 +51,7 @@ td, tr {
 	width: 34%;
   position: absolute;
   height: 83%;
+  display: none;
 }
 
 .form {
@@ -119,13 +126,18 @@ h1, p, h2 {
 .remove_warning:hover {
   background-color: #f44336;
   color: white;
+  cursor: pointer;
 }
 
 .logout {
 	margin-left: 50%;
 	background-color: #4CAF50;
-  	color: white;
-  	padding: 10px 5px;
-  	border: none;
-  	cursor: pointer;
+  color: white;
+  padding: 10px 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.instead {
+  text-align: center;
 }
