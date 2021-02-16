@@ -91,7 +91,7 @@ function viewUsers(){
 	button.onclick = function() {
 		document.getElementsByClassName("users")[0].style.display = "none";
 		sessionStorage.removeItem("currentUser");
-		location.reload();
+		location.replace("https://rajat-karahe.github.io/assignment02/index.html");
 	}
 	prevBody.appendChild(button);
 }
