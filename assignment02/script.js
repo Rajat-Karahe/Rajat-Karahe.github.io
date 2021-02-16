@@ -56,6 +56,8 @@ function login(){
 		let user = sessionData[i];
 		if(user.email==email && user.password==password){
 			sessionStorage.setItem('currentUser', user.role);
+			document.getElementsByClassName("login")[0].style.display = "none";
+			document.getElementsByClassName("users")[0].style.display = "revert";
 			viewUsers();
 			return true;
 		}
@@ -65,17 +67,18 @@ function login(){
 }
 
 function viewUsers(){
+	document.getElementsByClassName("users")[0].style.opacity = "100%";
 	var sessionData = JSON.parse(localStorage.getItem('sessionData')||'[]');
 	var prevBody = document.getElementById("dashBody");
 	if(sessionStorage.currentUser=='admin'){
-		prevBody.innerHTML ='<ul id="parent"><li><h2>You are an admin</h2><hr></li></ul>';
+		prevBody.innerHTML ='<h1>All Users Data</h1> <ul id="parent"><li><h2>You are an admin</h2><hr></li></ul>';
 		let parentEle = document.getElementById("parent");
 		for(let i=0; i<sessionData.length; i++){
 			parentEle.innerHTML += '<li><p>Full Name: ' + sessionData[i].firstName + ' ' + sessionData[i].lastName + '</p><p>Username: ' + sessionData[i].username + '</p><p>Email: ' + sessionData[i].email + '</p><p>Role: ' + sessionData[i].role + '</p></li><hr>';
 		}
 	}
 	else {
-		prevBody.innerHTML ='<ul id="parent"><li><h2>You are from ' + sessionStorage.currentUser + '</h2></li></ul>';
+		prevBody.innerHTML ='<h1>All Users Data</h1> <ul id="parent"><li><h2>You are from ' + sessionStorage.currentUser + '</h2></li></ul>';
 		let parentEle = document.getElementById("parent");
 		for(let i=0; i<sessionData.length; i++){
 			parentEle.innerHTML += '<li><p>Full Name: ' + sessionData[i].firstName + ' ' + sessionData[i].lastName + '</p><p>Role: ' + sessionData[i].role + '</p></li><hr>';
@@ -86,6 +89,8 @@ function viewUsers(){
 	button.appendChild(textNode);
 	button.className = "logout";
 	button.onclick = function() {
+		document.getElementsByClassName("users")[0].style.display = "none";
+		sessionStorage.removeItem("currentUser");
 		location.reload();
 	}
 	prevBody.appendChild(button);
@@ -126,4 +131,25 @@ function warning_fun_login(inputValue, parent_name) {
   divEle.className = "warning";
   var parent = document.getElementsByClassName(parent_name);
   parent[0].appendChild(divEle);
+}
+
+function loginInstead() {
+	document.getElementsByClassName("register")[0].style.display = "none";
+	document.getElementsByClassName("login")[0].style.display = "revert";
+}
+
+function registerInstead() {
+	document.getElementsByClassName("login")[0].style.display = "none";
+	document.getElementsByClassName("register")[0].style.display = "revert";
+}
+
+function callOnload() {
+	if(sessionStorage.currentUser === undefined){
+
+	}
+	else{
+		document.getElementsByClassName("register")[0].style.display = "none";
+		document.getElementsByClassName("users")[0].style.display = "revert";
+		viewUsers();
+	}
 }
