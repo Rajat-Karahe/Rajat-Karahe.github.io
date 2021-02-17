@@ -36,6 +36,20 @@ ul li:hover {
   background: #ddd;
 }
 
+.edit{
+	right: 0;
+    top: 0;
+    padding: 12px 8px 10px 8px;
+    color: black;
+    position: absolute;
+    margin-right: 60px;
+}
+
+.edit:hover {
+  background-color: #345f69;
+  color: white;
+  cursor: pointer;
+}
 
 .remove {
   right: 0;
@@ -109,4 +123,5 @@ h2{
 .remove_warning:hover {
   background-color: #f44336;
   color: white;
+  cursor: pointer;
 }
