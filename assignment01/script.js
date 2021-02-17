@@ -23,7 +23,7 @@ function addItem(textNode=null) {
   }
   var textSpan = document.createElement("SPAN");
   textSpan.appendChild(textNode);
-  textSpan.setAttribute("contenteditable", true);
+  textSpan.style.padding = "4px";
   newItem.appendChild(textSpan);
   
   document.getElementById("open").appendChild(newItem);
@@ -31,12 +31,21 @@ function addItem(textNode=null) {
   var txt = document.createTextNode("🗑");
   var spanCorrect = document.createElement("SPAN");
   var txtCorrect = document.createTextNode("✔");
+  var spanEdit = document.createElement("SPAN");
+  var txtEdit = document.createTextNode("✎");
+  spanEdit.className = "edit";
   span.className = "remove";
   spanCorrect.className = "check";
   span.style.position = "absolute";
   spanCorrect.style.position = "absolute";
   span.appendChild(txt);
   spanCorrect.appendChild(txtCorrect);
+  spanEdit.appendChild(txtEdit);
+  spanEdit.onclick = function(){
+  	textSpan.setAttribute("contenteditable", true);
+  	textSpan.style.outline = "-webkit-focus-ring-color auto 1px";
+  	spanEdit.style["background-color"] = "#345f69";
+  };
   span.onclick = function() {
     var result = confirm("Are you sure you want to delete this task?");
     if(result){
@@ -48,6 +57,14 @@ function addItem(textNode=null) {
   	newItem.remove();
   	addToCompleted(textNode);
   };
+  textSpan.onkeypress = function(e) {
+  	if (e.key === 'Enter') {
+	    textSpan.setAttribute("contenteditable", false);
+	    textSpan.style.outline = "none";
+	    spanEdit.style.removeProperty("background-color");
+	}
+  };
+  newItem.appendChild(spanEdit);
   newItem.appendChild(span);
   newItem.appendChild(spanCorrect);
 }
@@ -56,19 +73,28 @@ function addToCompleted(textNode) {
   let newItem = document.createElement("li");
   var textSpan = document.createElement("SPAN");
   textSpan.appendChild(textNode);
-  textSpan.setAttribute("contenteditable", true);
+  textSpan.style.padding = "4px";
   newItem.appendChild(textSpan);
   document.getElementById("completed").appendChild(newItem);
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("🗑");
   var spanRemove = document.createElement("SPAN");
   var textRemove = document.createTextNode("✘");
+  var spanEdit = document.createElement("SPAN");
+  var txtEdit = document.createTextNode("✎");
+  spanEdit.className = "edit";
   span.className = "remove";
   spanRemove.className = "check";
   span.style.position = "absolute";
   spanRemove.style.position = "absolute";
   span.appendChild(txt);
   spanRemove.appendChild(textRemove);
+  spanEdit.appendChild(txtEdit);
+  spanEdit.onclick = function(){
+  	textSpan.setAttribute("contenteditable", true);
+  	textSpan.style.outline = "-webkit-focus-ring-color auto 1px";
+  	spanEdit.style["background-color"] = "#345f69";
+  };
   span.onclick = function() {
     var result = confirm("Are you sure you want to delete this task?");
     if(result){
@@ -80,6 +106,14 @@ function addToCompleted(textNode) {
   	newItem.remove();
   	addItem(textNode);
   };
+  textSpan.onkeypress = function(e) {
+  	if (e.key === 'Enter') {
+	    textSpan.setAttribute("contenteditable", false);
+	    textSpan.style.outline = "none";
+	    spanEdit.style.removeProperty("background-color");
+	}
+  };
+  newItem.appendChild(spanEdit);
   newItem.appendChild(span);
   newItem.appendChild(spanRemove);
 }
@@ -113,4 +147,4 @@ function warning_fun(inputValue) {
 }
 
 
-// ✘ 🗑 ✔
+// ✘ 🗑 ✔ ✎
